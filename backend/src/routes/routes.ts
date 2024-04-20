@@ -1,8 +1,9 @@
 import { TokenController } from "../controller/TokenController"
 
 // routes/example.ts
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 const MainAPIRouter = express.Router();
+let controller: TokenController
 
 /**
  * @swagger
@@ -14,8 +15,14 @@ const MainAPIRouter = express.Router();
  *       200:
  *         description: Successful operation
  */
-MainAPIRouter.get('/tokens', (req: Request, res: Response) => {
-  // Your route logic here
+MainAPIRouter.get('/tokens', async (req: Request, res: Response, next: NextFunction) => {
+    // Your route logic here
+    try {
+        const tokens = await controller.all(req, res); // Call the controller method
+        res.json(tokens); // Send the response
+    } catch (error) {
+        next(error); // Pass any errors to the error handling middleware
+    }
 });
 
 /**
@@ -34,8 +41,13 @@ MainAPIRouter.get('/tokens', (req: Request, res: Response) => {
  *       200:
  *         description: Successful operation
  */
-MainAPIRouter.get('/tokens/:tokenId', (req: Request, res: Response) => {
-  // Your route logic here
+MainAPIRouter.get('/tokens/:tokenId', async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const token = await controller.one(req, res); // Call the controller method
+        res.json(token); // Send the response
+    } catch (error) {
+        next(error); // Pass any errors to the error handling middleware
+    }
 });
 
 /**
@@ -50,8 +62,13 @@ MainAPIRouter.get('/tokens/:tokenId', (req: Request, res: Response) => {
  *       400:
  *         description: Bad request
  */
-MainAPIRouter.post('/tokens/add', (req: Request, res: Response) => {
-    // Your route logic here
+MainAPIRouter.post('/tokens/add', async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const token = await controller.save(req, res); // Call the controller method
+        res.json(token); // Send the response
+    } catch (error) {
+        next(error); // Pass any errors to the error handling middleware
+    }
 });
 
 /**
@@ -63,9 +80,16 @@ MainAPIRouter.post('/tokens/add', (req: Request, res: Response) => {
  *     responses:
  *       200:
  *         description: Successful operation
+ *       400:
+ *         description: Bad request
  */
-MainAPIRouter.delete('/tokens/:tokenId', (req: Request, res: Response) => {
-    // Your route logic here
+MainAPIRouter.delete('/tokens/:tokenId', async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const token = await controller.remove(req, res); // Call the controller method
+        res.json(token); // Send the response
+    } catch (error) {
+        next(error); // Pass any errors to the error handling middleware
+    }
 });
 
 // Add similar annotations for other routes

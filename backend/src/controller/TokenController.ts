@@ -6,11 +6,11 @@ export class TokenController {
 
     private tokenRepository = AppDataSource.getRepository(Token)
 
-    async all(request: Request, response: Response, next: NextFunction) {
+    async all(request: Request, response: Response) {
         return this.tokenRepository.find()
     }
 
-    async one(request: Request, response: Response, next: NextFunction) {
+    async one(request: Request, response: Response) {
         const id = parseInt(request.params.id)
 
 
@@ -24,7 +24,7 @@ export class TokenController {
         return token
     }
 
-    async save(request: Request, response: Response, next: NextFunction) {
+    async save(request: Request, response: Response) {
         const { tokenId, name } = request.body;
 
         const token = Object.assign(new Token(), {
@@ -35,7 +35,7 @@ export class TokenController {
         return this.tokenRepository.save(token)
     }
 
-    async remove(request: Request, response: Response, next: NextFunction) {
+    async remove(request: Request, response: Response) {
         const tokenId = parseInt(request.params.tokenId)
 
         let tokenToRemove = await this.tokenRepository.findOneBy({ tokenId })
