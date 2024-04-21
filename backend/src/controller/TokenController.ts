@@ -11,13 +11,10 @@ export class TokenController {
     }
 
     async one(request: Request, response: Response) {
-        const id = parseInt(request.params.id)
-
-
+        const id = Number(request.params.tokenId)
         const token = await this.tokenRepository.findOne({
-            where: { id }
+            where: { tokenId: id }
         })
-
         if (!token) {
             return "unregistered token, cannot fetch"
         }
@@ -26,7 +23,6 @@ export class TokenController {
 
     async save(request: Request, response: Response) {
         const { tokenId, name } = request.body;
-
         const token = Object.assign(new Token(), {
             tokenId,
             name
@@ -36,10 +32,8 @@ export class TokenController {
     }
 
     async remove(request: Request, response: Response) {
-        const tokenId = parseInt(request.params.tokenId)
-
+        const tokenId = Number(request.params.tokenId)
         let tokenToRemove = await this.tokenRepository.findOneBy({ tokenId })
-
         if (!tokenToRemove) {
             return "this token does not exist"
         }
