@@ -3,24 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 import TokenListComponent from './Components/TokenList/TokenListComponent';
 import AvailableToken from './Interfaces/AvailableTokenInterface';
+import ErrorComponent from './Components/ErrorComponent/ErrorComponent';
 import { API_URL } from './config';
 
 function App() {
   const [availableTokens, setAvailableTokens] = useState<AvailableToken[]>([]);
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null);
 
-  // Function to fetch initial tokens
+  // Function to fetch available tokens
   const fetchAvailableTokens = async () => {
     try {
+      setLoading(true)
+
       const response = await fetch(API_URL + '/tokens');
       const data: AvailableToken[] = await response.json();
+
       setAvailableTokens(data)
+      setLoading(false)
       return data
     } catch (error) {
       console.error('Error fetching tokens:', error);
+      setLoading(false)
+      setError('Error fetching tokens: ' + error);
     }
   };
 
-  // useEffect hook to fetch initial tokens and start interval
   useEffect(() => {
     fetchAvailableTokens();
   }, []);
@@ -31,7 +39,13 @@ function App() {
       </header>
       <p className='text-center bg-gray-400'>Powered by CoinMarketCap</p>
       <div className="flex flex-col min-h-screen bg-gray-100">
-        <TokenListComponent availableTokens={availableTokens}/>
+        {loading ? (
+          <img src='./tube-spinner.svg' className="w-8 h-8"/>
+        ) : error ? (
+          <ErrorComponent error={error} />
+        ) : (
+          <TokenListComponent availableTokens={availableTokens} />
+        )}
       </div>
     </div>
   );
