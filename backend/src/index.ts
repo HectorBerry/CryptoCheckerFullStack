@@ -2,12 +2,15 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { AppDataSource } from "./data-source";
 import MainAPIRouter from "./routes/routes";
+import cors from 'cors';
 
 AppDataSource.initialize().then(async () => {
 
     // create express app
     const app = express();
     app.use(bodyParser.json());
+
+    app.use(cors());
 
     app.use(MainAPIRouter);
 
