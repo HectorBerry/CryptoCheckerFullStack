@@ -1,14 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export class Token {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    tokenId: number
+    tokenId: number;
 
     @Column()
-    name: string
+    name: string;
+
+    @Column()
+    symbol: string;
 }
