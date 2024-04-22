@@ -1,10 +1,10 @@
-import swaggerJsdoc from 'swagger-jsdoc';
+const swaggerJsDoc = require("swagger-jsdoc");
 
 const options = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'CryptoChecker API with Swagger',
+      title: 'CryptoPriceChecker API',
       version: '1.0.0',
       description: 'API documentation using Swagger',
     },
@@ -13,5 +13,5 @@ const options = {
   apis: ['src/routes/*.ts'], // Path to your API routes
 };
 
-const specs = swaggerJsdoc(options);
+const specs = swaggerJsDoc(options);
 export default specs;

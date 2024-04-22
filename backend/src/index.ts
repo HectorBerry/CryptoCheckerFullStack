@@ -2,7 +2,10 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { AppDataSource } from "./data-source";
 import MainAPIRouter from "./routes/routes";
-import cors from 'cors';
+import specs from './swagger';
+
+const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 AppDataSource.initialize().then(async () => {
 
@@ -11,6 +14,8 @@ AppDataSource.initialize().then(async () => {
     app.use(bodyParser.json());
 
     app.use(cors());
+
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs))
 
     app.use(MainAPIRouter);
 
