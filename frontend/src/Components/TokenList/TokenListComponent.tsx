@@ -96,16 +96,16 @@ const TokenListComponent = ({ availableTokens }: { availableTokens: AvailableTok
                 </div>
             </li>
             {error? <li>
-                <ErrorComponent error={error}/>
+                <ErrorComponent error={error} />
             </li> :
             tokens.map((token, index) => (
               <li key={index} className="mb-4 border rounded p-4 shadow-lg">
                 <div className="grid grid-cols-3">
-                  <div className='col-start-1 col-end-2'><img src={`./${token.symbol}-logo.svg`} className="w-9 h-9" onError={(e) => {
+                  <div className='col-start-1 col-end-2 flex flex-row items-center'><img src={`./${token.symbol}-logo.svg`} className="w-9 h-9 mr-5" onError={(e) => {
                         e.currentTarget.src = './BTC-logo.svg';
                     }}/> {token.name}</div>
-                  <div className='col-start-2 col-end-3 text-center'>{token.symbol}</div>
-                  <div className='col-start-3 col-end-4 flex flex-row-reverse'>{token.price.toString()} $</div>
+                  <div className='col-start-2 col-end-3 text-center flex items-center justify-center'>{token.symbol}</div>
+                  <div className='col-start-3 col-end-4 flex flex-row-reverse items-center'>{token.price.toFixed(2)} $</div>
                 </div>
               </li>
             ))}
