@@ -2,7 +2,7 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import { configDotenv } from "dotenv";
 
-configDotenv()
+configDotenv();
 // Go to https://infura.io, sign up, create a new API key
 // in its dashboard, and add it to the configuration variables
 const INFURA_API_KEY = process.env.INFURA_API_KEY;

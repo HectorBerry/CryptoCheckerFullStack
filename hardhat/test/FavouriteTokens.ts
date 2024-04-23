@@ -21,11 +21,11 @@ describe("FavouriteTokens", function () {
   });
 
   it("if token is there already, it should not set favourite token", async function () {
-    const tokenString = "ETH"
+    const tokenString = "ETH";
     await favouriteTokens.connect(addr1).setFavouriteToken(tokenString);
-    await expect(favouriteTokens.connect(addr1).setFavouriteToken(tokenString)).to.be.revertedWith(
-      "Token already in favourites"
-    )
+    await expect(
+      favouriteTokens.connect(addr1).setFavouriteToken(tokenString)
+    ).to.be.revertedWith("Token already in favourites");
   });
 
   it("should return favourite tokens", async function () {
@@ -37,13 +37,13 @@ describe("FavouriteTokens", function () {
   });
 
   it("if token is not in favourites, it should revert delete operation", async function () {
-    await expect(favouriteTokens.connect(addr1).deleteFavouriteToken("NOTTHERE")).to.be.revertedWith(
-      "Token is not in favourites"
-    )
+    await expect(
+      favouriteTokens.connect(addr1).deleteFavouriteToken("NOTTHERE")
+    ).to.be.revertedWith("Token is not in favourites");
   });
 
   it("should delete specified favourite token", async function () {
-    const tokenString = "BTC"
+    const tokenString = "BTC";
     await favouriteTokens.connect(addr1).setFavouriteToken(tokenString);
     await favouriteTokens.connect(addr1).deleteFavouriteToken(tokenString);
     const tokens = await favouriteTokens.getFavouriteTokens();
