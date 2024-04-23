@@ -1,6 +1,5 @@
-# Express.js Backend with TypeScript
-
-This is a simple backend application built with Express.js and TypeScript.
+# Crypto Currency Checker
+This is a simple backend application built with Express.js, TypeORM, Swagger, React.js, Cypress and Hardhat
 
 ## Getting Started
 
@@ -10,6 +9,7 @@ Make sure you have the following installed:
 
 - Node.js (v14 or higher)
 - npm (comes with Node.js)
+- MySQL Database
 
 ### Installation
 
@@ -19,16 +19,21 @@ Make sure you have the following installed:
 
 Navigate to the project directory
 
-`cd my-express-app`
+`cd my-app`
 
-Install dependencies:
-
+# Install dependencies:
+Run the following command on the backend, frontend & hardhat folder:
 `npm install`
 
-Running the Server
+# Config
+Then add the appropiate .env files based on the example ones provided, and fill them with the correct parameters corresponding to your env
 
-To start the Express server, run:
+Make sure the smart contract is deployed, if not, go to the README.md under /hardhat and see how to deploy it
 
-np start
+# Run
+To run the project(dev mode) start the servers in the following order:
+- /backend: npm run dev
+- /frontend: npm start
 
-The server will start on port 3000 by default. You can access it at http://localhost:3000.
+To run the E2E tests from cypress run:
+- /frontend: npm run cy:open

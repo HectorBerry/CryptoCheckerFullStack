@@ -2,16 +2,15 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export class Token {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  tokenId: number;
 
-    @Column()
-    tokenId: number;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
-
-    @Column()
-    symbol: string;
+  @Column()
+  symbol: string;
 }
