@@ -17,12 +17,12 @@ export class TokenController {
 
     async one(request: Request) {
         try{
-            const symbol = request.params.symbol;
+            const tokenId = Number(request.params.tokenId);
             const token = await this.tokenRepository.findOne({
-                where: { symbol }
+                where: { tokenId }
             });
             if (!token) {
-                return {error: "Unregistered symbol, cannot fetch"};
+                return {error: "Unregistered token"};
             };
             return token;
         } catch(error) {
@@ -40,9 +40,13 @@ export class TokenController {
                 symbol
             });
 
-            this.tokenRepository.save(token);
+            let tokenExists = await this.tokenRepository.findOneBy({symbol})
 
-            return token;
+            if (!tokenExists) {
+                this.tokenRepository.save(token);
+                return token
+            }
+            return "Token is already in the DB";
         } catch(error) {
             console.error("Error saving token:", error);
             return { error: "Failed to save token" };
