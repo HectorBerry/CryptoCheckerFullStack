@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 import TokenData from '../../Interfaces/TokenInterface';
 import AvailableToken from '../../Interfaces/AvailableTokenInterface';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import DynamicFavButton from '../DynamicFavButton/DynamicFavButtonComponent';
 import { API_URL } from '../../config';
 
-const TokenListComponent = ({ availableTokens }: { availableTokens: AvailableToken[] }) => {
+const TokenListComponent = (props: any) => {
   const [tokens, setTokens] = useState<TokenData[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  function isTokenFavourite(token: string): Boolean {
+    if(props.favouriteTokens && props.favouriteTokens.includes(token)) {
+      return true
+    }
+    return false
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Make API call to fetch token prices data
-        let tokenSymbols = availableTokens.map(token => {
+        let tokenSymbols = props.availableTokens.map((token: AvailableToken) => {
             return token["symbol"];
         })
 
@@ -30,9 +38,6 @@ const TokenListComponent = ({ availableTokens }: { availableTokens: AvailableTok
           });
         const data = await response.json();
         
-        console.log(data)
-
-        // Extract tokens items from the API response
         let keys = Object.keys(data)
         let tokenItems: TokenData[] = keys.map((key: any) => { 
             return {
@@ -105,7 +110,12 @@ const TokenListComponent = ({ availableTokens }: { availableTokens: AvailableTok
                         e.currentTarget.src = './BTC-logo.svg';
                     }}/> {token.name}</div>
                   <div className='col-start-2 col-end-3 text-center flex items-center justify-center'>{token.symbol}</div>
-                  <div className='col-start-3 col-end-4 flex flex-row-reverse items-center'>{token.price.toFixed(2)} $</div>
+                  <div className='col-start-3 col-end-4 flex flex-row-reverse items-center'>{
+                  props.isConnected? 
+                    <DynamicFavButton token={token} isFavToken={isTokenFavourite(token.symbol)} setFavToken={props.setFavToken} deleteFavToken={props.deleteFavouriteToken} />
+                    : 
+                      ''
+                    } {token.price.toFixed(2)} $</div>
                 </div>
               </li>
             ))}
