@@ -12,6 +12,10 @@ npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/FavouriteToken.ts
 ```
 
+# Deploy to sepolia test network(for testing purposes)
+`npx hardhat run ./deploy/deploy.ts --network sepolia`
+Be sure to have some SepoliaETH to be able to do the transactions(you can look up a sepolia faucet)
+
 Use the test command to run the test suite
 
 Use the ignition deploy to deploy it to the blockchain(Make sure its a test network like sepolia!)
