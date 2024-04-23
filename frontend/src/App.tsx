@@ -39,6 +39,9 @@ function App() {
       </header>
       <p className='text-center bg-gray-400'>Powered by CoinMarketCap</p>
       <div className="flex flex-col min-h-screen bg-gray-100">
+        <div className='flex flex-row-reverse mt-8 mr-14'>
+          <button className='bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>Connect to MetaMask</button>
+        </div>
         {loading ? (
           <div data-testid="spinner" className="flex justify-center items-start pt-14 h-screen">
             <img src='./tube-spinner.svg' className="w-12 h-12" />
