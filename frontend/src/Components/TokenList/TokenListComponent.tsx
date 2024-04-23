@@ -99,7 +99,7 @@ const TokenListComponent = ({ availableTokens }: { availableTokens: AvailableTok
                 <ErrorComponent error={error} />
             </li> :
             tokens.map((token, index) => (
-              <li key={index} className="mb-4 border rounded p-4 shadow-lg">
+              <li key={index} data-testid={`token-li-${index}`} className="mb-4 border rounded p-4 shadow-lg">
                 <div className="grid grid-cols-3">
                   <div className='col-start-1 col-end-2 flex flex-row items-center'><img src={`./${token.symbol}-logo.svg`} className="w-9 h-9 mr-5" onError={(e) => {
                         e.currentTarget.src = './BTC-logo.svg';

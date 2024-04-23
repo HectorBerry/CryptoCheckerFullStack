@@ -40,7 +40,7 @@ function App() {
       <p className='text-center bg-gray-400'>Powered by CoinMarketCap</p>
       <div className="flex flex-col min-h-screen bg-gray-100">
         {loading ? (
-          <div className="flex justify-center items-start pt-14 h-screen">
+          <div data-testid="spinner" className="flex justify-center items-start pt-14 h-screen">
             <img src='./tube-spinner.svg' className="w-12 h-12" />
           </div>
         ) : error ? (
