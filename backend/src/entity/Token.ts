@@ -5,7 +5,7 @@ export class Token {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({unique: true})
   tokenId: number;
 
   @Column()

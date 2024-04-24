@@ -172,6 +172,9 @@ MainAPIRouter.post(
   "/tokens/add",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      if (!req.body.tokenId || !req.body.name || !req.body.symbol) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
       const token = await controller.save(req);
       res.status(200).json(token);
     } catch (error) {
@@ -232,6 +235,9 @@ MainAPIRouter.post(
   "/tokens/getPrice",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      if (!req.body.symbol) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
       const tokens: Array<string> = req.body.symbol;
       const headers = {
         [CMC_API_KEY_HEADER]: process.env.CMC_API_KEY,

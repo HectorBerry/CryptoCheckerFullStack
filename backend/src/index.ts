@@ -25,7 +25,7 @@ AppDataSource.initialize()
     app.listen(8888);
 
     console.log(
-      "Express server has started on port 3000. Open http://localhost:3000/ to see results"
+      "Express server has started on port 8888. Open http://localhost:8888/ to see results"
     );
   })
   .catch((error) => console.log(error));

@@ -45,7 +45,7 @@ export class TokenController {
         this.tokenRepository.save(token);
         return token;
       }
-      return "Token is already in the DB";
+      return { error: "Token is already in the DB" };
     } catch (error) {
       console.error("Error saving token:", error);
       return { error: "Failed to save token" };
@@ -62,7 +62,7 @@ export class TokenController {
 
       await this.tokenRepository.remove(tokenToRemove);
 
-      return "Token has been removed";
+      return { success: "Token has been removed" };
     } catch (error) {
       console.error("Error removing token:", error);
       return { error: "Failed to remove token" };

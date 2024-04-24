@@ -9,7 +9,7 @@ const options = {
       description: "API documentation using Swagger",
     },
     servers: [
-      { url: "http://localhost:3000", description: "Development server" },
+      { url: "http://localhost:8888", description: "Development server" },
     ],
   },
   apis: ["src/routes/*.ts"], // Path to your API routes
