@@ -44,3 +44,12 @@ To run the project(dev mode) start the servers in the following order:
 
 To run the E2E tests from cypress run:
 - /frontend: npm run cy:open
+
+# Notes
+There are some icons for some cryptocurrencies, to see them you will need to add to the DB the next cryptos:
+- Bitcoin
+- Ethereum
+- Dogecoin
+- Litecoin
+
+For the cryptos without icon the default fallback is the Bitcoin icon
