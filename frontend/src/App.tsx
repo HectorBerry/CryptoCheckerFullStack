@@ -171,8 +171,8 @@ function App() {
           <TokenListComponent
             availableTokens={availableTokens}
             favouriteTokens={favouriteTokens}
-            setFavToken={setFavouriteToken}
             isConnected={isConnected}
+            setFavToken={setFavouriteToken}
             deleteFavouriteToken={deleteFavouriteToken}
           />
         )}

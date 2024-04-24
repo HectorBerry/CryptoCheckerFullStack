@@ -30,9 +30,10 @@ Run the following command on the backend, frontend & hardhat folder:
 # Config
 Config variables are managed with .env files, there are 2 of them, one under /backend and another under /hardhat .Add the appropiate .env files based on the example ones provided, and fill them with the correct parameters corresponding to your env.
 
-Make sure the smart contract is deployed, if not, go to the README.md under /hardhat and see how to deploy it.
+The network where the smart contract is deployed is Sepolia, so remember to set up MetaMask to use it(Settings->Advanced->Show test networks)
 
-Once the smart contract is deployed(or you have already the address), remember to paste the address and ABI in /frontend/src/Constant/Constants.ts under the appropiate constant variables.
+The smart contract is deployed, but in case for somewhat reason the address no longer works, go to the README.md under /hardhat and see how to deploy it:
+- Once the smart contract is deployed(or you have already the address), remember to paste the address and ABI in /frontend/src/Constant/Constants.ts under the appropiate constant variables.
 
 To use the smart contract functionality you will need the MetaMask extension in your browser and an account with some test tokens, the network set up for this project is Sepolia, but feel free to change it to another if you need it.
 
