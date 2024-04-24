@@ -26,7 +26,7 @@ Run the following command on the backend, frontend & hardhat folder:
 `npm install`
 
 # Config
-Then add the appropiate .env files based on the example ones provided(remember to put it in the backend folder), and fill them with the correct parameters corresponding to your env. For the hardhat env vars check the example .env under /hardhat
+Config variables are managed with .env files, there are 2 of them, one under /backend and another under /hardhat .Add the appropiate .env files based on the example ones provided, and fill them with the correct parameters corresponding to your env.
 
 Make sure the smart contract is deployed, if not, go to the README.md under /hardhat and see how to deploy it.
 
