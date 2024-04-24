@@ -11,6 +11,8 @@ Make sure you have the following installed:
 - npm (comes with Node.js)
 - MySQL Database
 
+!!IMPORTANT!! The MYSQL DB should be set up!!, you should have ready the user, password, database name and connection(hostname&port)
+
 ### Installation
 
 1. Clone the repository:
